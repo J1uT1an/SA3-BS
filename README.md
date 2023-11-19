@@ -14,3 +14,5 @@
 1. clone到本地
 2. 等待Maven下载依赖
 3. 修改 `src/Main.BS/jdbc.properties` 数据库配置
+4. 编辑Tomcat9服务器配置，点击运行
+5. 浏览器中打开
