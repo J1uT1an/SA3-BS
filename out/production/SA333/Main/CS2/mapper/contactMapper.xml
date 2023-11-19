@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Main.Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Main.CS2.dao.ContactDao">
+    <insert id="contactAdd" parameterType="Main.CS2.entity.Contact">
+        insert into contact (ccode,cname,caddress,cphone)
+        value(#{ccode},#{cname},#{caddress},#{cphone})
+    </insert>
+
+    <delete id="contactDelete" parameterType="java.lang.Integer">
+        delete from contact where ccode=#{ccode}
+    </delete>
+
+    <update id="contactUpdate" parameterType="Main.CS2.entity.Contact">
+        update contact
+        <trim prefix="set" suffixOverrides=",">
+            <if test="cname !=null and cname !=''">
+                cname=#{cname},
+            </if>
+            <if test="caddress !=null and caddress !=''">
+                caddress=#{caddress},
+            </if>
+            <if test="cphone !=null and cphone !=''">
+                cphone=#{cphone}
+            </if>
+        </trim>
+        where ccode=#{ccode}
+    </update>
+
+    <select id="contactSelectByName" parameterType="java.lang.String" resultType="Main.CS2.entity.Contact">
+        select * from contact where cname like #{cname}
+    </select>
+
+    <select id="contactSelectAll" resultType="Main.CS2.entity.Contact">
+        select * from contact
+    </select>
+</mapper>
